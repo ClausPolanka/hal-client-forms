@@ -114,12 +114,12 @@ function hal() {
     }
 
     // show selected links (based on name)
-    function selectLinks(filter, section, itm) {
-        var elm, coll;
+    function selectLinks(filter, htmlElemSection, itm) {
+        var elementWhereToRender, coll;
         var menu, item, a, sel, opt, id;
 
-        elm = d.find(section);
-        d.clear(elm);
+        elementWhereToRender = d.find(htmlElemSection);
+        d.clear(elementWhereToRender);
         if (g.hal._links) {
             coll = g.hal._links;
             menu = d.node("div");
@@ -142,7 +142,7 @@ function hal() {
                     a = halAttributes(a, coll[link]);
 
                     item = d.node("div");
-                    if (elm.id !== "links" && elm.id !== "toplinks") {
+                    if (elementWhereToRender.id !== "links" && elementWhereToRender.id !== "toplinks") {
                         item.className = "ui basic blue link item action button";
                     }
                     item.onclick = halLink;
@@ -151,17 +151,17 @@ function hal() {
                     d.push(item, menu);
                 }
             }
-            d.push(menu, elm);
+            d.push(menu, elementWhereToRender);
         }
         if (menu.hasChildNodes()) {
-            elm.style.display = "block";
+            elementWhereToRender.style.display = "block";
         } else {
-            elm.style.display = "none";
+            elementWhereToRender.style.display = "none";
         }
 
-        if (elm.id === "links") {
+        if (elementWhereToRender.id === "links") {
             menu.className += " stackable";
-        } else if (elm.id === "toplinks") {
+        } else if (elementWhereToRender.id === "toplinks") {
             menu.className += " fixed top";
         } else {
             // use mini buttons for item actions
